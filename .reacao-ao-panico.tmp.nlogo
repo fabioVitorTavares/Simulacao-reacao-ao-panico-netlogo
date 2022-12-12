@@ -1,5 +1,5 @@
 ;; Variáveis globais
-globals [saida-mais-segura-xcor saidaMaisSeguraXcor saidaMaisSeguraYcor]
+globals [saida-mais-segura-xcor saida-mais-segura-ycor]
 
 ;; Tipo pessoa
 breed [pessoas pessoa]
@@ -67,6 +67,15 @@ to setup
   ask patches [set pcolor 9]
 
 
+  ;; Cálculo da saída mais segura, a mais distante do ínicio do pânico
+  let maior-distancia 0
+  ask saidas [
+    if (sqrt(((xcor - [xcor] of panico 0) * (xcor - [xcor] of panico 0))+((ycor - [ycor] of panico 0) * (ycor - [ycor] of panico 0))) > maior-distancia)[
+      set maior-distancia sqrt(((xcor - [xcor] of panico 0) * (xcor - [xcor] of panico 0))+((ycor - [ycor] of panico 0) * (ycor - [ycor] of panico 0)))
+      set saida-mais-segura-xcor xcor
+      set saida-mais-segura-ycor ycor
+    ]
+  ]
 
   ;; Variável para indicar se imprimi o caminho feito pelas pessoas ou não
   set desenhar-caminho false
@@ -87,7 +96,8 @@ to go
       let menorDistancia  40
       let pessoaXcor xcor
       let pessoaYcor ycor
-
+      let saidaMaisSeguraXcor 0
+      let saidaMaisSeguraYcor 0
       ask saidas [
         if (sqrt(((xcor - pessoaXcor) * (xcor - pessoaXcor))+((ycor - pessoaYcor) * (ycor - pessoaYcor))) < menorDistancia)[
           set menorDistancia sqrt(((xcor - pessoaXcor) * (xcor - pessoaXcor))+((ycor - pessoaYcor) * (ycor - pessoaYcor)))
@@ -134,7 +144,7 @@ to go
       ]
     ]
     if(movimenta)[
-      if(((xcor < saidaMaisSeguraXcor + 1) and (xcor > saidaMaisSeguraXcor - 1)) and ((ycor < saidaMaisSeguraYcor + 1) and (ycor > saidaMaisSeguraYcor - 1)))[
+      if(((xcor <  + 1) and (xcor > saidaMaisSeguraXcor - 1)) and ((ycor < saidaMaisSeguraYcor + 1) and (ycor > saidaMaisSeguraYcor - 1)))[
         set movimenta false
         set hidden? true
       ]
