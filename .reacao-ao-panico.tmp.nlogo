@@ -41,7 +41,7 @@ to setup
     set ycor random-pycor
     set quantidade-pessoas 0
     set label quantidade-pessoas
-
+    set plabel-color 15
   ]
 
 
@@ -269,10 +269,6 @@ desenhar-caminho
 -1000
 
 @#$#@#$#@
-#Simulação da reação das pessoas em uma situação de pânico em um ambiente fechado.
-
-
-A simulação se passa em um ambiente contendo de 10 a 200 pessoas, de 1 a 4 saídas e um agente responsável por espalhar o pânico. Pessoas, saídas e o agente do pânico são adicionados ao espaço em posições aleatórias. A cada passo da simulação o raio em torno de ponto de origem do agente do pânico cresce gradativamente, representando o espalhamento do pânico dentro do ambiente. No momento em que uma pessoa se encontra-se dentro da área coberta pelo agente do pânico é habilitada sua habilidade de se mover, cada pessoa tem um atributo que indica o quanto essa pessoa se movimenta no ambiente à cada passo da simulação. Para cada pessoa é calculada a saída mais próxima e a partir do momento em que sua habilidade de se movimentar é habilitada a casa passo da simulação ela se movimenta em direção a saída, chegando na saída ele se torna invisível na simulação, simulando sua saída do ambiente. Cada saída tem um atributo que conta a quantidade de pessoas que saíram por ela, esse atributo é atualizada a casa passo da simulação e é mostrado dentro da saída, representada pelo quadrado verde. Conseguimos habilitar a função de denhar o caminho de cada pessoa a partir do botão no painel esquerdo.
 @#$#@#$#@
 default
 true
